@@ -26,9 +26,10 @@ class PackageHeaderView: UIView {
     stackView.axis = .vertical
     stackView.spacing = CGFloat.packageSpacing
     self.addSubview(stackView)
+
     NSLayoutConstraint.activate([
       stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: CGFloat.packageSpacing),
-      stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: CGFloat.packageSpacing)
+      stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: CGFloat.packageSpacing),
     ])
   }
 

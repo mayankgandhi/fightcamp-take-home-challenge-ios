@@ -23,9 +23,11 @@ class PackageViewModel {
     package.headline
   }
   var thumbnailURLs: [URL] {
-    package.thumbnail_urls.map { (string) -> URL in
-      URL(string: string)!
+    var thumbnailURLS = [URL]()
+    package.thumbnail_urls.forEach { (urlString) in
+      thumbnailURLS.append(URL(string: urlString)!)
     }
+    return thumbnailURLS
   }
   var included:[String] {
     package.included

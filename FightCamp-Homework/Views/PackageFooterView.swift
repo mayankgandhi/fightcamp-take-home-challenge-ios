@@ -24,6 +24,7 @@ class PackageFooterView: UIView {
     let stackView = UIStackView(arrangedSubviews: [paymentLabel, priceLabel, button])
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
+    stackView.alignment = .center
     stackView.spacing = CGFloat.packageSpacing
     self.addSubview(stackView)
     NSLayoutConstraint.activate([
