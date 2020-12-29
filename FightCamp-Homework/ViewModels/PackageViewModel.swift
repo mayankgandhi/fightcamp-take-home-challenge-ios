@@ -30,11 +30,17 @@ class PackageViewModel {
   var included:[String] {
     package.included
   }
+  var excluded:[String]? {
+    package.excluded
+  }
   var paymentText: String {
     package.payment
   }
   var priceText: String {
     "$\(package.price)"
+  }
+  var actionText: String {
+    package.action
   }
 
   public init(_ package: Package) {
