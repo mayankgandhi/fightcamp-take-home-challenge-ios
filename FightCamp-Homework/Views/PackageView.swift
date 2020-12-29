@@ -35,6 +35,11 @@ class PackageView: UIView {
     ])
   }
 
+  func configureView(with viewModel: PackageViewModel) {
+    headerView.configureView(with: viewModel)
+    footerView.configureView(with: viewModel)
+  }
+
   let headerView: PackageHeaderView = {
     let headerView = PackageHeaderView()
     headerView.translatesAutoresizingMaskIntoConstraints = false

@@ -47,4 +47,9 @@ class PackageHeaderView: UIView {
     return label
   }()
 
+  func configureView(with viewModel: PackageViewModel) {
+    titleLabel.text = viewModel.titleText
+    descriptionLabel.text = viewModel.descriptionText
+  }
+
 }

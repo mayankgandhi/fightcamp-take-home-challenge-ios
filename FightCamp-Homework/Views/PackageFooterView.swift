@@ -55,4 +55,10 @@ class PackageFooterView: UIView {
     return button
   }()
 
+  func configureView(with viewModel: PackageViewModel) {
+    paymentLabel.text = viewModel.paymentText
+    priceLabel.text = viewModel.priceText
+    button.setTitle(viewModel.actionText, for: .normal)
+  }
+
 }
