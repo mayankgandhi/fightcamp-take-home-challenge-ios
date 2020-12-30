@@ -14,7 +14,6 @@
 		5CF80473259B48E9008BE286 /* PackageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF80472259B48E9008BE286 /* PackageViewModel.swift */; };
 		5CF8047A259B4DA4008BE286 /* DataLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF80479259B4DA4008BE286 /* DataLayer.swift */; };
 		5CF8047D259B50F1008BE286 /* PackageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF8047C259B50F1008BE286 /* PackageView.swift */; };
-		5CF80484259B5E02008BE286 /* PackageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF80483259B5E02008BE286 /* PackageHeaderView.swift */; };
 		5CF80487259B5E0C008BE286 /* PackageFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF80486259B5E0C008BE286 /* PackageFooterView.swift */; };
 		5CF8048A259B5E1D008BE286 /* PackageImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF80489259B5E1D008BE286 /* PackageImagesView.swift */; };
 		C1BD977A249AC04D0044B734 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BD9779249AC04D0044B734 /* AppDelegate.swift */; };
@@ -37,7 +36,6 @@
 		5CF80472259B48E9008BE286 /* PackageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageViewModel.swift; sourceTree = "<group>"; };
 		5CF80479259B4DA4008BE286 /* DataLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLayer.swift; sourceTree = "<group>"; };
 		5CF8047C259B50F1008BE286 /* PackageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageView.swift; sourceTree = "<group>"; };
-		5CF80483259B5E02008BE286 /* PackageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageHeaderView.swift; sourceTree = "<group>"; };
 		5CF80486259B5E0C008BE286 /* PackageFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageFooterView.swift; sourceTree = "<group>"; };
 		5CF80489259B5E1D008BE286 /* PackageImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageImagesView.swift; sourceTree = "<group>"; };
 		C1BD9776249AC04D0044B734 /* FC-Homework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FC-Homework.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				5CF8047C259B50F1008BE286 /* PackageView.swift */,
-				5CF80483259B5E02008BE286 /* PackageHeaderView.swift */,
 				5CF80489259B5E1D008BE286 /* PackageImagesView.swift */,
 				5CF80486259B5E0C008BE286 /* PackageFooterView.swift */,
 			);
@@ -226,7 +223,6 @@
 				5C02F211259C01C5002042A3 /* String+Strikethrough.swift in Sources */,
 				5CF8048A259B5E1D008BE286 /* PackageImagesView.swift in Sources */,
 				5CF8046D259B45F1008BE286 /* Package.swift in Sources */,
-				5CF80484259B5E02008BE286 /* PackageHeaderView.swift in Sources */,
 				5CF80473259B48E9008BE286 /* PackageViewModel.swift in Sources */,
 				C1BD9791249AC0810044B734 /* Fonts.swift in Sources */,
 				C1BD978F249AC0790044B734 /* Colors.swift in Sources */,
