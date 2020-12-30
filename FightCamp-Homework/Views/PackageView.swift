@@ -12,12 +12,20 @@ import UIKit
 class PackageView: UIView {
 
   var stackView: UIStackView!
+  var labelStackView: UIStackView!
 
   override init(frame: CGRect) {
     super.init(frame: frame)
     backgroundColor = .secondaryBackground
     layer.cornerRadius = .packageRadius
-    stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel, imagesView, footerView])
+
+    labelStackView = UIStackView(arrangedSubviews: includedExcludedLabels)
+    labelStackView.axis = .vertical
+    labelStackView.distribution = .fillProportionally
+    labelStackView.alignment = .leading
+    labelStackView.spacing = .lineHeightMultiple
+
+    stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel, imagesView, labelStackView ,footerView])
     setupViews()
     setupConstraints()
   }
@@ -27,12 +35,13 @@ class PackageView: UIView {
   }
 
   func setupViews() {
+    stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
     stackView.spacing = CGFloat.packageSpacing
     stackView.backgroundColor = .primaryBackground
     stackView.alignment = .leading
+    stackView.distribution = .fillProportionally
     stackView.layer.cornerRadius = .packageRadius
-    stackView.translatesAutoresizingMaskIntoConstraints = false
     addSubview(stackView)
   }
 
@@ -46,15 +55,21 @@ class PackageView: UIView {
 
       titleLabel.topAnchor.constraint(equalTo: stackView.topAnchor, constant: .packageSpacing),
       titleLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: .packageSpacing),
+      titleLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1 * CGFloat.packageSpacing),
+
       descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: .packageSpacing),
       descriptionLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: .packageSpacing),
-      descriptionLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: .packageSpacing),
+      descriptionLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1 * CGFloat.packageSpacing),
 
       imagesView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: .packageSpacing),
       imagesView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: .packageSpacing),
       imagesView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1 * CGFloat.packageSpacing),
 
-      footerView.topAnchor.constraint(equalTo: imagesView.bottomAnchor, constant: .packageSpacing),
+      labelStackView.topAnchor.constraint(equalTo: imagesView.bottomAnchor, constant: .packageSpacing),
+      labelStackView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: .packageSpacing),
+      labelStackView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1 * CGFloat.packageSpacing),
+
+      footerView.topAnchor.constraint(equalTo: labelStackView.bottomAnchor, constant: .packageSpacing),
       footerView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: .packageSpacing),
       footerView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1 * CGFloat.packageSpacing),
     ])
@@ -65,6 +80,20 @@ class PackageView: UIView {
     descriptionLabel.text = viewModel.descriptionText.capitalized
     imagesView.configureView(with: viewModel)
     footerView.configureView(with: viewModel)
+
+    // add included labels
+    for index in 0 ..< viewModel.included.count {
+      includedExcludedLabels[index].text = viewModel.included[index].capitalized
+      includedExcludedLabels[index].font = .body
+    }
+
+    // add excluded labels
+    guard let excludedItems = viewModel.excluded else { return }
+    for index in viewModel.included.count ..< excludedItems.count + viewModel.included.count {
+      includedExcludedLabels[index].font = .body
+      includedExcludedLabels[index].textColor = .disabledLabel
+      includedExcludedLabels[index].attributedText = excludedItems[index - viewModel.included.count].capitalized.strikeThrough()
+    }
   }
 
   var titleLabel: UILabel = {
@@ -97,20 +126,14 @@ class PackageView: UIView {
     return footerView
   }()
 
-  var thumbnails: [UIImageView] = {
-    var thumbnails = [UIImageView]()
-    for _ in 0 ... 3 {
-      let thumbnailImage = UIImageView()
-      thumbnailImage.translatesAutoresizingMaskIntoConstraints = false
-      thumbnailImage.layer.cornerRadius = .thumbnailRadius
-      thumbnailImage.heightAnchor.constraint(equalToConstant: CGFloat(75)).isActive = true
-      thumbnailImage.contentMode = .scaleAspectFill
-      thumbnailImage.clipsToBounds = true
-      thumbnailImage.layer.borderWidth = .thumbnailBorderWidth
-      thumbnailImage.layer.borderColor = UIColor.thumbnailBorder(selected: false).cgColor
-      thumbnails.append(thumbnailImage)
+  var includedExcludedLabels: [UILabel] = {
+    var includedExcludedLabels = [UILabel]()
+    for _ in 0 ..< 8 {
+      let label = UILabel()
+      label.translatesAutoresizingMaskIntoConstraints = false
+      includedExcludedLabels.append(label)
     }
-    return thumbnails
+    return includedExcludedLabels
   }()
 
 }

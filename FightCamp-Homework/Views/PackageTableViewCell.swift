@@ -24,10 +24,8 @@ class PackageTableViewCell: UITableViewCell {
   }
 
   func setupView() {
-
-    contentView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height).isActive = true
-    contentView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width).isActive = true
-
+    packageView.translatesAutoresizingMaskIntoConstraints = false
+    
     contentView.addSubview(packageView)
 
     NSLayoutConstraint.activate([
