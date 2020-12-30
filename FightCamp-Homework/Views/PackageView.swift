@@ -15,7 +15,7 @@ class PackageView: UIView {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    backgroundColor = UIColor.primaryBackground
+    backgroundColor = .red
     stackView = UIStackView(arrangedSubviews: [headerView, imagesView, footerView])
     setupViews()
     setupConstraints()
@@ -39,6 +39,7 @@ class PackageView: UIView {
 
   private func setupConstraints() {
     NSLayoutConstraint.activate([
+      stackView.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, constant: -2*CGFloat.packageSpacing),
       stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: CGFloat.packageSpacing),
       stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: CGFloat.packageSpacing),
       stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -CGFloat.packageSpacing),
@@ -69,4 +70,5 @@ class PackageView: UIView {
     footerView.translatesAutoresizingMaskIntoConstraints = false
     return footerView
   }()
+
 }

@@ -10,6 +10,7 @@ import UIKit
 
 struct PackageViewModel: Hashable {
     private let package: Package
+    let id = UUID()
 
     // MARK: Instance Properties
 
@@ -58,6 +59,6 @@ struct PackageViewModel: Hashable {
     }
 
     static func == (lhs: PackageViewModel, rhs: PackageViewModel) -> Bool {
-        lhs.titleText == rhs.titleText && lhs.priceText == rhs.priceText
+      lhs.id == rhs.id
     }
 }
