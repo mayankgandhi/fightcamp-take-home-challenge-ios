@@ -17,14 +17,6 @@ class PackageView: UIView {
         super.init(frame: frame)
         backgroundColor = .secondaryBackground
         layer.cornerRadius = .packageRadius
-
-        labelStackView = UIStackView(arrangedSubviews: includedExcludedLabels)
-        labelStackView.axis = .vertical
-        labelStackView.distribution = .fillProportionally
-        labelStackView.alignment = .leading
-        labelStackView.spacing = .lineHeightMultiple
-
-        stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel, imagesView, labelStackView, footerView])
         setupViews()
         setupConstraints()
     }
@@ -35,6 +27,13 @@ class PackageView: UIView {
     }
 
     func setupViews() {
+        labelStackView = UIStackView(arrangedSubviews: includedExcludedLabels)
+        labelStackView.axis = .vertical
+        labelStackView.distribution = .fillProportionally
+        labelStackView.alignment = .leading
+        labelStackView.spacing = .lineHeightMultiple
+        stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel, imagesView, labelStackView, footerView])
+
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = CGFloat.packageSpacing
@@ -109,6 +108,7 @@ class PackageView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .body
         label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
         label.sizeToFit()
         return label
     }()

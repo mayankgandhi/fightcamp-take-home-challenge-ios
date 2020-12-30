@@ -25,7 +25,6 @@ class PackageTableViewCell: UITableViewCell {
 
     func setupView() {
         packageView.translatesAutoresizingMaskIntoConstraints = false
-
         contentView.addSubview(packageView)
 
         NSLayoutConstraint.activate([

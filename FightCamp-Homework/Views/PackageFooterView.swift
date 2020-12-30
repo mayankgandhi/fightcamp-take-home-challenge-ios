@@ -45,6 +45,7 @@ class PackageFooterView: UIView {
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             button.widthAnchor.constraint(equalTo: widthAnchor),
             button.heightAnchor.constraint(equalToConstant: .buttonHeight),
+            button.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1 * CGFloat.packageSpacing),
         ])
     }
 
