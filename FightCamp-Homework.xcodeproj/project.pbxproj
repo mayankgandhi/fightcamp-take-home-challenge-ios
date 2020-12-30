@@ -33,6 +33,7 @@
 		5C02F20C259BF15A002042A3 /* UIImageView+loadURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+loadURL.swift"; sourceTree = "<group>"; };
 		5C02F210259C01C5002042A3 /* String+Strikethrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Strikethrough.swift"; sourceTree = "<group>"; };
 		5C02F225259C311B002042A3 /* PackageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageTableViewCell.swift; sourceTree = "<group>"; };
+		5C02F23D259C598C002042A3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		5CF8046C259B45F1008BE286 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		5CF8046F259B46B0008BE286 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		5CF80472259B48E9008BE286 /* PackageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageViewModel.swift; sourceTree = "<group>"; };
@@ -112,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				C1BD9779249AC04D0044B734 /* AppDelegate.swift */,
+				5C02F23D259C598C002042A3 /* README.md */,
 				C1BD977B249AC04D0044B734 /* SceneDelegate.swift */,
 				5CF8046F259B46B0008BE286 /* RootViewController.swift */,
 				5CF80475259B4D09008BE286 /* Models */,
@@ -176,7 +178,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Alexandre Marcotte";
 				TargetAttributes = {
 					C1BD9775249AC04D0044B734 = {
@@ -269,6 +271,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -329,6 +332,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
