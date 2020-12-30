@@ -9,35 +9,34 @@
 import UIKit
 
 class PackageTableViewCell: UITableViewCell {
+    static let reuseID = "PackageTableViewCell"
 
-  static let reuseID = "PackageTableViewCell"
+    let packageView = PackageView()
 
-  let packageView = PackageView()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
+    }
 
-  override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    super.init(style: style, reuseIdentifier: reuseIdentifier)
-    setupView()
-  }
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
+    func setupView() {
+        packageView.translatesAutoresizingMaskIntoConstraints = false
 
-  func setupView() {
-    packageView.translatesAutoresizingMaskIntoConstraints = false
-    
-    contentView.addSubview(packageView)
+        contentView.addSubview(packageView)
 
-    NSLayoutConstraint.activate([
-      packageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-      packageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-      packageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-      packageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-    ])
-  }
+        NSLayoutConstraint.activate([
+            packageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            packageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            packageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            packageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+        ])
+    }
 
-  func configureView(with packageItem: PackageViewModel) {
-    packageView.configureView(with: packageItem)
-  }
-
+    func configureView(with packageItem: PackageViewModel) {
+        packageView.configureView(with: packageItem)
+    }
 }

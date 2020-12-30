@@ -59,6 +59,6 @@ struct PackageViewModel: Hashable {
     }
 
     static func == (lhs: PackageViewModel, rhs: PackageViewModel) -> Bool {
-      lhs.id == rhs.id
+        lhs.id == rhs.id
     }
 }
