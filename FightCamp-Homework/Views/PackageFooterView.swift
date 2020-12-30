@@ -19,7 +19,6 @@ class PackageFooterView: UIView {
     labelStackView.axis = .vertical
     labelStackView.alignment = .leading
     labelStackView.spacing = .lineHeightMultiple
-
     stackView = UIStackView(arrangedSubviews: [labelStackView, paymentLabel, priceLabel, button])
 
     setupViews()
@@ -33,7 +32,7 @@ class PackageFooterView: UIView {
   private func setupViews() {
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
-    stackView.alignment = .center
+    stackView.alignment = .leading
     stackView.distribution = .fill
     stackView.spacing = .packageSpacing
     addSubview(stackView)
@@ -43,7 +42,7 @@ class PackageFooterView: UIView {
       stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
       stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
       stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-      button.widthAnchor.constraint(equalTo: widthAnchor, constant: -2 * CGFloat.packageSpacing),
+      button.widthAnchor.constraint(equalTo: widthAnchor),
     ])
   }
 

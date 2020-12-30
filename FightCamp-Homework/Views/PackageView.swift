@@ -11,9 +11,13 @@ import UIKit
 
 class PackageView: UIView {
 
+  var stackView: UIStackView!
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     backgroundColor = .secondaryBackground
+    layer.cornerRadius = .packageRadius
+    stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel, imagesView, footerView])
     setupViews()
     setupConstraints()
   }
@@ -23,25 +27,36 @@ class PackageView: UIView {
   }
 
   func setupViews() {
-    addSubview(titleLabel)
-    addSubview(descriptionLabel)
-    addSubview(imagesView)
-    addSubview(footerView)
+    stackView.axis = .vertical
+    stackView.spacing = CGFloat.packageSpacing
+    stackView.backgroundColor = .primaryBackground
+    stackView.alignment = .leading
+    stackView.layer.cornerRadius = .packageRadius
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    addSubview(stackView)
   }
 
   private func setupConstraints() {
     NSLayoutConstraint.activate([
-      titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: .packageSpacing),
-      titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: .packageSpacing),
+
+      stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: CGFloat.packageSpacing),
+      stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: CGFloat.packageSpacing),
+      stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -CGFloat.packageSpacing),
+      stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -CGFloat.packageSpacing),
+
+      titleLabel.topAnchor.constraint(equalTo: stackView.topAnchor, constant: .packageSpacing),
+      titleLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: .packageSpacing),
       descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: .packageSpacing),
-      descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: .packageSpacing),
+      descriptionLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: .packageSpacing),
+      descriptionLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: .packageSpacing),
 
       imagesView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: .packageSpacing),
-      imagesView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: .packageSpacing),
-      imagesView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -1 * CGFloat.packageSpacing),
+      imagesView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: .packageSpacing),
+      imagesView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1 * CGFloat.packageSpacing),
 
       footerView.topAnchor.constraint(equalTo: imagesView.bottomAnchor, constant: .packageSpacing),
-      footerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: .packageSpacing),
+      footerView.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: .packageSpacing),
+      footerView.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -1 * CGFloat.packageSpacing),
     ])
   }
 
@@ -65,6 +80,7 @@ class PackageView: UIView {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.font = .body
+    label.numberOfLines = 0
     label.sizeToFit()
     return label
   }()
