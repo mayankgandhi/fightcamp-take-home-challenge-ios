@@ -25,7 +25,7 @@ class PackageView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func setupViews() {
+  private func setupViews() {
 
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
@@ -37,9 +37,9 @@ class PackageView: UIView {
 
   }
 
-  func setupConstraints() {
+  private func setupConstraints() {
     NSLayoutConstraint.activate([
-      stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: CGFloat.packageSpacing),
+      stackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: CGFloat.packageSpacing),
       stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: CGFloat.packageSpacing),
       stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -CGFloat.packageSpacing),
       stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -CGFloat.packageSpacing)

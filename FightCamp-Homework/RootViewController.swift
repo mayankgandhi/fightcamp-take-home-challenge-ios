@@ -15,11 +15,8 @@ class RootViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
     // Do any additional setup after loading the view.
-
     viewModel = PackageViewModel(DataLayer.shared.loadJson(filename: "packages")![0])
-    print(viewModel)
   }
 
   override func loadView() {

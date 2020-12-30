@@ -20,7 +20,7 @@ class PackageHeaderView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func setupViews() {
+  private func setupViews() {
     let stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel])
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
@@ -38,19 +38,22 @@ class PackageHeaderView: UIView {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.sizeToFit()
+    label.font = .title
+    label.textColor = .brandRed
     return label
   }()
 
   var descriptionLabel: UILabel = {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
+    label.font = .body
     label.sizeToFit()
     return label
   }()
 
   func configureView(with viewModel: PackageViewModel) {
-    titleLabel.text = viewModel.titleText
-    descriptionLabel.text = viewModel.descriptionText
+    titleLabel.text = viewModel.titleText.uppercased()
+    descriptionLabel.text = viewModel.descriptionText.capitalized
   }
 
 }

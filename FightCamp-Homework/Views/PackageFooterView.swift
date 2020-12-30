@@ -11,8 +11,18 @@ import UIKit
 
 class PackageFooterView: UIView {
 
+  var stackView: UIStackView!
+
   override init(frame: CGRect) {
     super.init(frame: frame)
+
+    let labelStackView = UIStackView(arrangedSubviews: includedExcludedLabels)
+    labelStackView.axis = .vertical
+    labelStackView.alignment = .leading
+    labelStackView.spacing = .lineHeightMultiple
+
+    stackView = UIStackView(arrangedSubviews: [labelStackView,paymentLabel, priceLabel,button])
+
     setupViews()
   }
 
@@ -20,8 +30,7 @@ class PackageFooterView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func setupViews() {
-    let stackView = UIStackView(arrangedSubviews: [paymentLabel, priceLabel, button])
+  private func setupViews() {
     stackView.translatesAutoresizingMaskIntoConstraints = false
     stackView.axis = .vertical
     stackView.alignment = .center
@@ -29,7 +38,9 @@ class PackageFooterView: UIView {
     self.addSubview(stackView)
     NSLayoutConstraint.activate([
       stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: CGFloat.packageSpacing),
-      stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: CGFloat.packageSpacing)
+      stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: CGFloat.packageSpacing),
+      button.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -2*CGFloat.packageSpacing),
+ 
     ])
   }
 
@@ -38,6 +49,7 @@ class PackageFooterView: UIView {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.sizeToFit()
+    label.font = .body
     return label
   }()
 
@@ -45,6 +57,7 @@ class PackageFooterView: UIView {
     let label = UILabel()
     label.translatesAutoresizingMaskIntoConstraints = false
     label.sizeToFit()
+    label.font = .price
     return label
   }()
 
@@ -52,14 +65,41 @@ class PackageFooterView: UIView {
     let button = UIButton(type: .custom)
     button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = UIColor.buttonBackground
+    button.heightAnchor.constraint(equalToConstant: .buttonHeight).isActive = true
     button.setTitleColor(UIColor.buttonTitle, for: .normal)
+    button.layer.cornerRadius = .buttonRadius
+    button.titleLabel?.font = .button
     return button
   }()
 
+  var includedExcludedLabels: [UILabel] = {
+    var includedExcludedLabels = [UILabel]()
+    for _ in 0..<8 {
+      let label = UILabel()
+      label.translatesAutoresizingMaskIntoConstraints = false
+      includedExcludedLabels.append(label)
+    }
+    return includedExcludedLabels
+  }()
+
   func configureView(with viewModel: PackageViewModel) {
-    paymentLabel.text = viewModel.paymentText
+    paymentLabel.text = viewModel.paymentText.capitalized
     priceLabel.text = viewModel.priceText
-    button.setTitle(viewModel.actionText, for: .normal)
+    button.setTitle(viewModel.actionText.capitalized, for: .normal)
+
+    //add included labels
+    for index in 0..<viewModel.included.count {
+      includedExcludedLabels[index].text = viewModel.included[index].capitalized
+      includedExcludedLabels[index].font = .body
+    }
+
+    //add excluded labels
+    guard let excludedItems = viewModel.excluded else { return }
+    for index in viewModel.included.count..<excludedItems.count+viewModel.included.count {
+      includedExcludedLabels[index].font = .body
+      includedExcludedLabels[index].textColor = .disabledLabel
+      includedExcludedLabels[index].attributedText = excludedItems[index - viewModel.included.count].capitalized.strikeThrough()
+    }
   }
 
 }

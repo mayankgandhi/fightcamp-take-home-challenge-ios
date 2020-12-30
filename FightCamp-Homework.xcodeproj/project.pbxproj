@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5C02F20D259BF15A002042A3 /* UIImageView+loadURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C02F20C259BF15A002042A3 /* UIImageView+loadURL.swift */; };
+		5C02F211259C01C5002042A3 /* UILabel+Strikethrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C02F210259C01C5002042A3 /* UILabel+Strikethrough.swift */; };
 		5CF8046D259B45F1008BE286 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF8046C259B45F1008BE286 /* Package.swift */; };
 		5CF80470259B46B0008BE286 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF8046F259B46B0008BE286 /* RootViewController.swift */; };
 		5CF80473259B48E9008BE286 /* PackageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF80472259B48E9008BE286 /* PackageViewModel.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		5C02F20C259BF15A002042A3 /* UIImageView+loadURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+loadURL.swift"; sourceTree = "<group>"; };
+		5C02F210259C01C5002042A3 /* UILabel+Strikethrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Strikethrough.swift"; sourceTree = "<group>"; };
 		5CF8046C259B45F1008BE286 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		5CF8046F259B46B0008BE286 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		5CF80472259B48E9008BE286 /* PackageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageViewModel.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				C1BD978E249AC0790044B734 /* Colors.swift */,
 				5C02F20C259BF15A002042A3 /* UIImageView+loadURL.swift */,
+				5C02F210259C01C5002042A3 /* UILabel+Strikethrough.swift */,
 				C1BD9790249AC0810044B734 /* Fonts.swift */,
 				C1FD02AC249B23F30029487C /* Layout.swift */,
 			);
@@ -220,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CF80487259B5E0C008BE286 /* PackageFooterView.swift in Sources */,
+				5C02F211259C01C5002042A3 /* UILabel+Strikethrough.swift in Sources */,
 				5CF8048A259B5E1D008BE286 /* PackageImagesView.swift in Sources */,
 				5CF8046D259B45F1008BE286 /* Package.swift in Sources */,
 				5CF80484259B5E02008BE286 /* PackageHeaderView.swift in Sources */,

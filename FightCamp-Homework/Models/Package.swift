@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Package: Codable {
+struct Package: Codable, Hashable {
   let title: String
   let desc: String
   let headline: String?

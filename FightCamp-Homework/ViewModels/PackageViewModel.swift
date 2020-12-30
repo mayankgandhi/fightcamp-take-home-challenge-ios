@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PackageViewModel {
+struct PackageViewModel: Hashable {
 
   private let package: Package
 
@@ -47,6 +47,10 @@ class PackageViewModel {
 
   public init(_ package: Package) {
     self.package = package
+  }
+
+  static func == (lhs: PackageViewModel, rhs: PackageViewModel) -> Bool {
+    lhs.titleText == rhs.titleText && lhs.priceText == rhs.priceText
   }
 
 }

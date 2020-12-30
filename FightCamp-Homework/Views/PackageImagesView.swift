@@ -22,7 +22,7 @@ class PackageImagesView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func setupViews() {
+  private func setupViews() {
 
     let hStackView = UIStackView(arrangedSubviews: thumbnails)
     hStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -67,12 +67,6 @@ class PackageImagesView: UIView {
       thumbnailImage.clipsToBounds = true
       thumbnailImage.layer.borderWidth = .thumbnailBorderWidth
       thumbnailImage.layer.borderColor = UIColor.thumbnailBorder(selected: false).cgColor
-
-      thumbnailImage.isUserInteractionEnabled = true
-      let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(singleTapping(recognizer:)))
-      singleTap.numberOfTapsRequired = 1
-      thumbnailImage.addGestureRecognizer(singleTap)
-      
       thumbnails.append(thumbnailImage)
     }
     return thumbnails
@@ -84,11 +78,6 @@ class PackageImagesView: UIView {
       thumbnails[idx].load(url: viewModel.thumbnailURLs[idx])
     }
   }
-
-  @objc func singleTapping(recognizer: UIGestureRecognizer) {
-    print("image clicked")
-  }
-
 }
 
 
