@@ -10,8 +10,12 @@ import Foundation
 import UIKit
 
 class PackageView: UIView {
-    var stackView: UIStackView!
-    var labelStackView: UIStackView!
+    // MARK: Instance properties
+
+    private var stackView: UIStackView!
+    private var labelStackView: UIStackView!
+
+    // MARK: Initializers
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,7 +30,52 @@ class PackageView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setupViews() {
+    // MARK: UI Elements
+
+    private var titleLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .title
+        label.textColor = .brandRed
+        label.sizeToFit()
+        return label
+    }()
+
+    private var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .body
+        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
+        label.sizeToFit()
+        return label
+    }()
+
+    private let imagesView: PackageImagesView = {
+        let imagesView = PackageImagesView()
+        imagesView.translatesAutoresizingMaskIntoConstraints = false
+        return imagesView
+    }()
+
+    private let footerView: PackageFooterView = {
+        let footerView = PackageFooterView()
+        footerView.translatesAutoresizingMaskIntoConstraints = false
+        return footerView
+    }()
+
+    private var includedExcludedLabels: [UILabel] = {
+        var includedExcludedLabels = [UILabel]()
+        for _ in 0 ..< 8 {
+            let label = UILabel()
+            label.translatesAutoresizingMaskIntoConstraints = false
+            includedExcludedLabels.append(label)
+        }
+        return includedExcludedLabels
+    }()
+}
+
+extension PackageView {
+    private func setupViews() {
         labelStackView = UIStackView(arrangedSubviews: includedExcludedLabels)
         labelStackView.axis = .vertical
         labelStackView.distribution = .fillProportionally
@@ -93,45 +142,4 @@ class PackageView: UIView {
             includedExcludedLabels[index].attributedText = excludedItems[index - viewModel.included.count].capitalized.strikeThrough()
         }
     }
-
-    var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .title
-        label.textColor = .brandRed
-        label.sizeToFit()
-        return label
-    }()
-
-    var descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .body
-        label.numberOfLines = 0
-        label.adjustsFontSizeToFitWidth = true
-        label.sizeToFit()
-        return label
-    }()
-
-    let imagesView: PackageImagesView = {
-        let imagesView = PackageImagesView()
-        imagesView.translatesAutoresizingMaskIntoConstraints = false
-        return imagesView
-    }()
-
-    let footerView: PackageFooterView = {
-        let footerView = PackageFooterView()
-        footerView.translatesAutoresizingMaskIntoConstraints = false
-        return footerView
-    }()
-
-    var includedExcludedLabels: [UILabel] = {
-        var includedExcludedLabels = [UILabel]()
-        for _ in 0 ..< 8 {
-            let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
-            includedExcludedLabels.append(label)
-        }
-        return includedExcludedLabels
-    }()
 }

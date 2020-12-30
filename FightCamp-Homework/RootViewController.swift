@@ -8,34 +8,17 @@
 
 import UIKit
 
-// class RootViewController: UIViewController {
-//  var packageView: PackageView { return view as! PackageView }
-//  var viewModel: PackageViewModel!
-//
-//  override func viewDidLoad() {
-//    super.viewDidLoad()
-//    // Do any additional setup after loading the view.
-//    viewModel = PackageViewModel(DataLayer.shared.loadJson(filename: "packages")![0])
-//  }
-//
-//  override func loadView() {
-//    view = PackageView()
-//  }
-//
-//  override func viewWillAppear(_ animated: Bool) {
-//    super.viewWillAppear(animated)
-//    packageView.configureView(with: viewModel!)
-//  }
-// }
-
+/// `RootViewController` is the main View Controller that contains the tableView to show the list of available packages to the user
 class RootViewController: UIViewController {
+    /// Section allows using Diffable DataSource
     enum Section: CaseIterable {
         case main
     }
 
+    /// TableView Components using Diffable DataSource
     let tableView = UITableView(frame: .zero, style: .plain)
     var dataSource: UITableViewDiffableDataSource<Section, PackageViewModel>!
-    var currentSnapshot: NSDiffableDataSourceSnapshot<Section, PackageViewModel>!
+    lazy var currentSnapshot: NSDiffableDataSourceSnapshot<Section, PackageViewModel>! = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +27,9 @@ class RootViewController: UIViewController {
         configureDataSource()
         updatePackages()
     }
+}
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
+extension RootViewController {
     func configureTableView() {
         view.addSubview(tableView)
         tableView.backgroundColor = .secondaryBackground

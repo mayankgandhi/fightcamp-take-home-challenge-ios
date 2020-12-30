@@ -10,7 +10,11 @@ import Foundation
 import UIKit
 
 class PackageFooterView: UIView {
+    // MARK: Instance Properties
+
     var stackView: UIStackView!
+
+    // MARK: Initializers
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,7 +80,9 @@ class PackageFooterView: UIView {
         button.titleLabel?.font = .button
         return button
     }()
+}
 
+extension PackageFooterView {
     func configureView(with viewModel: PackageViewModel) {
         paymentLabel.text = viewModel.paymentText.capitalized
         priceLabel.text = viewModel.priceText

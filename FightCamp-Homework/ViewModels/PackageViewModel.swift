@@ -9,10 +9,13 @@
 import UIKit
 
 struct PackageViewModel: Hashable {
+    // MARK: Instance Properties
+
     private let package: Package
+
     let id = UUID()
 
-    // MARK: Instance Properties
+    // MARK: ViewModel Properties
 
     var titleText: String {
         package.title
@@ -54,10 +57,13 @@ struct PackageViewModel: Hashable {
         package.action
     }
 
+    // MARK: Initializer
+
     public init(_ package: Package) {
         self.package = package
     }
 
+    /// Hashable Conformance allows using these ViewModels in `UITableViewDiffableDataSource`
     static func == (lhs: PackageViewModel, rhs: PackageViewModel) -> Bool {
         lhs.id == rhs.id
     }

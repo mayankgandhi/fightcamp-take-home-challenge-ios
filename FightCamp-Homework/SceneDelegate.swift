@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = .init(windowScene: windowScene)
         let rootVC = RootViewController()
-        window?.rootViewController = rootVC /* instantiate the view controller here */
+        window?.rootViewController = rootVC
         window?.makeKeyAndVisible()
     }
 

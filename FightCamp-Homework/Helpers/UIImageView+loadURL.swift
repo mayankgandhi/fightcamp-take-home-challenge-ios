@@ -9,6 +9,8 @@
 import UIKit
 
 extension UIImageView {
+    /// Extends `UIImageView` to fetch `UIImage` using the url on a global thread.
+    /// - Parameter url: `URL` to locate the image
     func load(url: URL) {
         DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {

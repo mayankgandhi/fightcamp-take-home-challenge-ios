@@ -10,8 +10,12 @@ import Foundation
 import UIKit
 
 class PackageImagesView: UIView {
+    // MARK: Instance Properties
+
     var viewModel: PackageViewModel!
     private var selectedThumbnailIdx = 0
+
+    // MARK: Initializers
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,6 +27,37 @@ class PackageImagesView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: UI Elements
+
+    private var thumbnailImage: UIImageView = {
+        let thumbnailImage = UIImageView()
+        thumbnailImage.translatesAutoresizingMaskIntoConstraints = false
+        thumbnailImage.layer.cornerRadius = .thumbnailRadius
+        thumbnailImage.contentMode = .scaleAspectFill
+        thumbnailImage.heightAnchor.constraint(equalToConstant: .thumbnailHeight).isActive = true
+        thumbnailImage.clipsToBounds = true
+        return thumbnailImage
+    }()
+
+    private var thumbnails: [UIButton] = {
+        var thumbnails = [UIButton]()
+        for idx in 0 ... 3 {
+            let thumbnailImage = UIButton(type: .custom)
+            thumbnailImage.translatesAutoresizingMaskIntoConstraints = false
+            thumbnailImage.layer.cornerRadius = .thumbnailRadius
+            thumbnailImage.contentMode = .scaleAspectFill
+            thumbnailImage.clipsToBounds = true
+            thumbnailImage.layer.borderWidth = .thumbnailBorderWidth
+            thumbnailImage.layer.borderColor = UIColor.thumbnailBorder(selected: false).cgColor
+            thumbnailImage.tag = idx
+            thumbnailImage.addTarget(self, action: #selector(selectedThumbnail), for: .touchUpInside)
+            thumbnails.append(thumbnailImage)
+        }
+        return thumbnails
+    }()
+}
+
+extension PackageImagesView {
     private func setupViews() {
         let hStackView = UIStackView(arrangedSubviews: thumbnails)
         hStackView.axis = .horizontal
@@ -47,36 +82,7 @@ class PackageImagesView: UIView {
         ])
     }
 
-    // MARK: UI Elements
-
-    var thumbnailImage: UIImageView = {
-        let thumbnailImage = UIImageView()
-        thumbnailImage.translatesAutoresizingMaskIntoConstraints = false
-        thumbnailImage.layer.cornerRadius = .thumbnailRadius
-        thumbnailImage.contentMode = .scaleAspectFill
-        thumbnailImage.heightAnchor.constraint(equalToConstant: .thumbnailHeight).isActive = true
-        thumbnailImage.clipsToBounds = true
-        return thumbnailImage
-    }()
-
-    var thumbnails: [UIButton] = {
-        var thumbnails = [UIButton]()
-        for idx in 0 ... 3 {
-            let thumbnailImage = UIButton(type: .custom)
-            thumbnailImage.translatesAutoresizingMaskIntoConstraints = false
-            thumbnailImage.layer.cornerRadius = .thumbnailRadius
-            thumbnailImage.contentMode = .scaleAspectFill
-            thumbnailImage.clipsToBounds = true
-            thumbnailImage.layer.borderWidth = .thumbnailBorderWidth
-            thumbnailImage.layer.borderColor = UIColor.thumbnailBorder(selected: false).cgColor
-            thumbnailImage.tag = idx
-            thumbnailImage.addTarget(self, action: #selector(selectedThumbnail), for: .touchUpInside)
-            thumbnails.append(thumbnailImage)
-        }
-        return thumbnails
-    }()
-
-    @objc func selectedThumbnail(sender: UIButton) {
+    @objc private func selectedThumbnail(sender: UIButton) {
         selectedThumbnailIdx = sender.tag
         thumbnailImage.load(url: viewModel.thumbnailURLs[selectedThumbnailIdx])
         print("Button is tapped \(sender.tag)")
@@ -90,7 +96,7 @@ class PackageImagesView: UIView {
         }
     }
 
-    func load(url: URL) -> UIImage {
+    private func load(url: URL) -> UIImage {
         var image = UIImage()
         if let data = try? Data(contentsOf: url) {
             if let img = UIImage(data: data) {

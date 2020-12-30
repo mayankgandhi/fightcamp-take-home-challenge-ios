@@ -9,9 +9,12 @@
 import UIKit
 
 class PackageTableViewCell: UITableViewCell {
-    static let reuseID = "PackageTableViewCell"
+    // MARK: Instance Properties
 
-    let packageView = PackageView()
+    static let reuseID = "PackageTableViewCell"
+    private let packageView = PackageView()
+
+    // MARK: Initializers
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -22,8 +25,10 @@ class PackageTableViewCell: UITableViewCell {
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
 
-    func setupView() {
+extension PackageTableViewCell {
+    private func setupView() {
         packageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(packageView)
 

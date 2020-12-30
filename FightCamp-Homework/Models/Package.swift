@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// `Package` model is used to serialize JSON data using the Codable protocol.
 struct Package: Codable, Hashable {
     let title: String
     let desc: String
