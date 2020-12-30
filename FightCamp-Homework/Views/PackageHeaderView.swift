@@ -24,6 +24,7 @@ class PackageHeaderView: UIView {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.distribution = .fillProportionally
         stackView.spacing = CGFloat.packageSpacing
         addSubview(stackView)
 

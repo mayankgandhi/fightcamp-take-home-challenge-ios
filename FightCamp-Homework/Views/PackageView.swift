@@ -10,61 +10,63 @@ import Foundation
 import UIKit
 
 class PackageView: UIView {
-    var stackView: UIStackView!
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        backgroundColor = UIColor.primaryBackground
-        stackView = UIStackView(arrangedSubviews: [headerView, imagesView, footerView])
-        setupViews()
-        setupConstraints()
-    }
+  var stackView: UIStackView!
 
-    @available(*, unavailable)
-    required init?(coder _: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    backgroundColor = UIColor.primaryBackground
+    stackView = UIStackView(arrangedSubviews: [headerView, imagesView, footerView])
+    setupViews()
+    setupConstraints()
+  }
 
-    private func setupViews() {
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = CGFloat.packageSpacing
-        stackView.distribution = .fillProportionally
-        stackView.backgroundColor = .secondaryBackground
-        stackView.layer.cornerRadius = .packageRadius
-        addSubview(stackView)
-    }
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
 
-    private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: CGFloat.packageSpacing),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: CGFloat.packageSpacing),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -CGFloat.packageSpacing),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -CGFloat.packageSpacing),
-        ])
-    }
+  func setupViews() {
+    stackView.axis = .vertical
+    stackView.spacing = CGFloat.packageSpacing
+    stackView.backgroundColor = .secondaryBackground
+    stackView.alignment = .leading
+    stackView.distribution = .fillProportionally
+    stackView.layer.cornerRadius = .packageRadius
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.clipsToBounds = true
+    addSubview(stackView)
+  }
 
-    func configureView(with viewModel: PackageViewModel) {
-        headerView.configureView(with: viewModel)
-        imagesView.configureView(with: viewModel)
-        footerView.configureView(with: viewModel)
-    }
+  private func setupConstraints() {
+    NSLayoutConstraint.activate([
+      stackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: CGFloat.packageSpacing),
+      stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: CGFloat.packageSpacing),
+      stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -CGFloat.packageSpacing),
+      stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -CGFloat.packageSpacing),
+    ])
+  }
 
-    let headerView: PackageHeaderView = {
-        let headerView = PackageHeaderView()
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        return headerView
-    }()
+  func configureView(with viewModel: PackageViewModel) {
+    headerView.configureView(with: viewModel)
+    imagesView.configureView(with: viewModel)
+    footerView.configureView(with: viewModel)
+  }
 
-    let imagesView: PackageImagesView = {
-        let imagesView = PackageImagesView()
-        imagesView.translatesAutoresizingMaskIntoConstraints = false
-        return imagesView
-    }()
+  let headerView: PackageHeaderView = {
+    let headerView = PackageHeaderView()
+    headerView.translatesAutoresizingMaskIntoConstraints = false
+    return headerView
+  }()
 
-    let footerView: PackageFooterView = {
-        let footerView = PackageFooterView()
-        footerView.translatesAutoresizingMaskIntoConstraints = false
-        return footerView
-    }()
+  let imagesView: PackageImagesView = {
+    let imagesView = PackageImagesView()
+    imagesView.translatesAutoresizingMaskIntoConstraints = false
+    return imagesView
+  }()
+
+  let footerView: PackageFooterView = {
+    let footerView = PackageFooterView()
+    footerView.translatesAutoresizingMaskIntoConstraints = false
+    return footerView
+  }()
 }
