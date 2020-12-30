@@ -35,6 +35,7 @@ class PackageFooterView: UIView {
     stackView.axis = .vertical
     stackView.alignment = .center
     stackView.distribution = .fill
+    stackView.spacing = .packageSpacing
     addSubview(stackView)
 
     NSLayoutConstraint.activate([
