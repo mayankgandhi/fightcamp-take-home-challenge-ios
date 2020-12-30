@@ -10,34 +10,36 @@ import UIKit
 
 // MARK: - Font
 
-extension UIFont {
-
+public extension UIFont {
     /// Package title label font
-    public static var title: UIFont = UIFont(
+    static var title = UIFont(
         name: .groteskSquare,
-        size: 36)!
+        size: 36
+    )!
 
     /// Package description label & package accessories label & price title label
-    public static var body: UIFont = UIFont(
+    static var body = UIFont(
         name: .graphikMedium,
-        size: 16)!
+        size: 16
+    )!
 
     /// Price label font
-    public static var price: UIFont = UIFont(
+    static var price = UIFont(
         name: .graphikMedium,
-        size: 26)!
+        size: 26
+    )!
 
     /// CTA button font
-    public static var button: UIFont = UIFont(
+    static var button = UIFont(
         name: .graphikMedium,
-        size: 16)!
+        size: 16
+    )!
 }
 
 // MARK: - Font names
 
-extension String {
-
-    fileprivate static let graphikMedium: String = "Graphik-Medium"
-    fileprivate static let graphikRegular: String = "Graphik-Regular"
-    fileprivate static let groteskSquare: String = "NewGroteskSquareFOUR"
+private extension String {
+    static let graphikMedium: String = "Graphik-Medium"
+    static let graphikRegular: String = "Graphik-Regular"
+    static let groteskSquare: String = "NewGroteskSquareFOUR"
 }

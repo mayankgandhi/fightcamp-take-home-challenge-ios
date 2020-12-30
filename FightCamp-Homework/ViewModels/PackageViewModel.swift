@@ -9,48 +9,55 @@
 import UIKit
 
 struct PackageViewModel: Hashable {
+    private let package: Package
 
-  private let package: Package
+    // MARK: Instance Properties
 
-  // MARK: Instance Properties
-  var titleText: String {
-    package.title
-  }
-  var descriptionText: String {
-    package.desc
-  }
-  var headlineText: String? {
-    package.headline
-  }
-  var thumbnailURLs: [URL] {
-    var thumbnailURLS = [URL]()
-    package.thumbnail_urls.forEach { (urlString) in
-      thumbnailURLS.append(URL(string: urlString)!)
+    var titleText: String {
+        package.title
     }
-    return thumbnailURLS
-  }
-  var included:[String] {
-    package.included
-  }
-  var excluded:[String]? {
-    package.excluded
-  }
-  var paymentText: String {
-    package.payment
-  }
-  var priceText: String {
-    "$\(package.price)"
-  }
-  var actionText: String {
-    package.action
-  }
 
-  public init(_ package: Package) {
-    self.package = package
-  }
+    var descriptionText: String {
+        package.desc
+    }
 
-  static func == (lhs: PackageViewModel, rhs: PackageViewModel) -> Bool {
-    lhs.titleText == rhs.titleText && lhs.priceText == rhs.priceText
-  }
+    var headlineText: String? {
+        package.headline
+    }
 
+    var thumbnailURLs: [URL] {
+        var thumbnailURLS = [URL]()
+        package.thumbnail_urls.forEach { urlString in
+            thumbnailURLS.append(URL(string: urlString)!)
+        }
+        return thumbnailURLS
+    }
+
+    var included: [String] {
+        package.included
+    }
+
+    var excluded: [String]? {
+        package.excluded
+    }
+
+    var paymentText: String {
+        package.payment
+    }
+
+    var priceText: String {
+        "$\(package.price)"
+    }
+
+    var actionText: String {
+        package.action
+    }
+
+    public init(_ package: Package) {
+        self.package = package
+    }
+
+    static func == (lhs: PackageViewModel, rhs: PackageViewModel) -> Bool {
+        lhs.titleText == rhs.titleText && lhs.priceText == rhs.priceText
+    }
 }

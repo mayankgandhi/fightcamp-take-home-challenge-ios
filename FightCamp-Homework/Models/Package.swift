@@ -9,13 +9,13 @@
 import Foundation
 
 struct Package: Codable, Hashable {
-  let title: String
-  let desc: String
-  let headline: String?
-  let thumbnail_urls: [String]
-  let included: [String]
-  let excluded: [String]?
-  let payment: String
-  let price: Int
-  let action: String
+    let title: String
+    let desc: String
+    let headline: String?
+    let thumbnail_urls: [String]
+    let included: [String]
+    let excluded: [String]?
+    let payment: String
+    let price: Int
+    let action: String
 }
